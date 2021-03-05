@@ -23,8 +23,7 @@ def rabbits(startAdultRabbits, startBabyRabbits, monthlyReproductionRate, totalC
         tempBabyRabbits -= tempBabyRabbits #clear temp baby rabbits
         tempBabyRabbits += adultRabbits #adults making babies
         adultRabbits += babyRabbits #babies mature into adults
-        babyRabbits -= babyRabbits #clear babies
-        babyRabbits = tempBabyRabbits #temp babies to real babies
+        babyRabbits = tempBabyRabbits #temp babies to real babies and clears babies
         totalRabbits = adultRabbits + babyRabbits #creating total
         print(babyRabbits, adultRabbits, totalRabbits)
 
