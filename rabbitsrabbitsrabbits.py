@@ -1,4 +1,9 @@
 """
+
+-------------------------------------------------------------------------------------
+THIS IS SO UGLY DP DONT JUDGE ME I WILL IMPLEMENT REPRODUCTION RATE CHANGES TOMORROW
+-------------------------------------------------------------------------------------
+
 python3
 print rabbit growth rate in pairs as they grow from babies to adults to a csv file
 """
