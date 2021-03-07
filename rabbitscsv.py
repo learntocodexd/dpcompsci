@@ -36,7 +36,7 @@ def csvrabbits():
             thewriter.writerow([month, adultRabbits, babyRabbits, totalRabbits])
 
         f.close()
-    print("csv file created")
+    print("csv file created: rabbits.csv")
 
 
 if __name__ == '__main__':
