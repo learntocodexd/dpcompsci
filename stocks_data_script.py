@@ -53,6 +53,8 @@ for value in aapl_stocks["Price"]:
         aapl_stock_total_count += 1
 
 print(aapl_stock_high)
+aapl_stock_average = aapl_stock_total / aapl_stock_total_count
+print(f"The average price of AAPL stock: {aapl_stock_average}.")
 
 ibm_stock_high = 0
 ibm_stock_total = 0
@@ -67,6 +69,8 @@ for value in ibm_stocks["Price"]:
         ibm_stock_total_count += 1
 
 print(ibm_stock_high)
+ibm_stock_average = ibm_stock_total / ibm_stock_total_count
+print(f"The average price of IBM stock: {ibm_stock_average}.")
 
 msft_stock_high = 0
 msft_stock_total = 0
@@ -81,6 +85,8 @@ for value in msft_stocks["Price"]:
         msft_stock_total_count += 1
 
 print(msft_stock_high)
+msft_stock_average = msft_stock_total / msft_stock_total_count
+print(f"The average price of MSFT stock: {msft_stock_average}.")
 
 print((sum(aapl_stocks['Price'])))
 print((sum(ibm_stocks['Price'])))
