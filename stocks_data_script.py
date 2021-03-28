@@ -43,17 +43,24 @@ with open('stocks_data.csv') as csv_file:
 aapl_stock_high = 0
 aapl_stock_total = 0
 aapl_stock_total_count = 0
+aapl_stock_low = 1000
 for value in aapl_stocks["Price"]:
     if value > aapl_stock_high:
         aapl_stock_high = value
         aapl_stock_total += value
         aapl_stock_total_count += 1
     else:
-        aapl_stock_total += value
-        aapl_stock_total_count += 1
+        if value < aapl_stock_low:
+            aapl_stock_low = value
+            aapl_stock_total += value
+            aapl_stock_total_count += 1
+        else:
+            aapl_stock_total += value
+            aapl_stock_total_count += 1
 
 #prints stock high, computes stock average and prints
 print(aapl_stock_high)
+print(aapl_stock_low)
 aapl_stock_average = aapl_stock_total / aapl_stock_total_count
 print(f"The average price of AAPL stock: {aapl_stock_average}.")
 
@@ -61,16 +68,23 @@ print(f"The average price of AAPL stock: {aapl_stock_average}.")
 ibm_stock_high = 0
 ibm_stock_total = 0
 ibm_stock_total_count = 0
+ibm_stock_low = 1000
 for value in ibm_stocks["Price"]:
     if value > ibm_stock_high:
         ibm_stock_high = value
         ibm_stock_total += value
         ibm_stock_total_count += 1
     else:
-        ibm_stock_total += value
-        ibm_stock_total_count += 1
+        if value < ibm_stock_low:
+            ibm_stock_low = value
+            ibm_stock_total += value
+            ibm_stock_total_count += 1
+        else:
+            ibm_stock_total += value
+            ibm_stock_total_count += 1
 
 print(ibm_stock_high)
+print(ibm_stock_low)
 ibm_stock_average = ibm_stock_total / ibm_stock_total_count
 print(f"The average price of IBM stock: {ibm_stock_average}.")
 
@@ -78,24 +92,27 @@ print(f"The average price of IBM stock: {ibm_stock_average}.")
 msft_stock_high = 0
 msft_stock_total = 0
 msft_stock_total_count = 0
+msft_stock_low = 1000
 for value in msft_stocks["Price"]:
     if value > msft_stock_high:
         msft_stock_high = value
         msft_stock_total += value
         msft_stock_total_count += 1
     else:
-        msft_stock_total += value
-        msft_stock_total_count += 1
+        if value < msft_stock_low:
+            msft_stock_low = value
+            msft_stock_total += value
+            msft_stock_total_count += 1
+        else:
+            msft_stock_total += value
+            msft_stock_total_count += 1
 
 print(msft_stock_high)
+print(msft_stock_low)
 msft_stock_average = msft_stock_total / msft_stock_total_count
 print(f"The average price of MSFT stock: {msft_stock_average}.")
 
 #redundant print of total price
-print((sum(aapl_stocks['Price'])))
-print((sum(ibm_stocks['Price'])))
-print((sum(msft_stocks['Price'])))
-
 
 #ignore this something we might need if we have to fundamentally change the whole script
 '''
