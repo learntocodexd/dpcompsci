@@ -138,23 +138,6 @@ msft_stock_average = msft_stock_total / msft_stock_total_count
 msft_stock_high_date = msft_stock_high_dict["Date"]
 msft_stock_low_date = msft_stock_low_dict["Date"]
 
-
-print(f"\nAAPL \n---")
-print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.")
-print(f"Min: {aapl_stock_low} on {aapl_stock_low_date}.")
-print(f"Average: {aapl_stock_average}.")
-
-print(f"\nIBM \n---")
-print(f"Max: {ibm_stock_high} on {ibm_stock_high_date}.")
-print(f"Min: {ibm_stock_low} on {ibm_stock_low_date}.")
-print(f"Average: {ibm_stock_average}.")
-
-print(f"\nMSFT \n---")
-print(f"Max: {msft_stock_high} on {msft_stock_high_date}.")
-print(f"Min: {msft_stock_low} on {msft_stock_low_date}.")
-print(f"Average: {msft_stock_average}.")
-
-
 all_stock_max = (max(
     float(aapl_stock_high_dict['Price']), 
     float(ibm_stock_high_dict['Price']), 
@@ -166,3 +149,40 @@ all_stock_low = (min(
     float(ibm_stock_low_dict['Price']), 
     float(msft_stock_low_dict['Price'])
 ))
+
+print(f"\nAAPL \n----")
+print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.")
+print(f"Min: {aapl_stock_low} on {aapl_stock_low_date}.")
+print(f"Average: {aapl_stock_average}.")
+
+print(f"\nIBM \n----")
+print(f"Max: {ibm_stock_high} on {ibm_stock_high_date}.")
+print(f"Min: {ibm_stock_low} on {ibm_stock_low_date}.")
+print(f"Average: {ibm_stock_average}.")
+
+print(f"\nMSFT \n----")
+print(f"Max: {msft_stock_high} on {msft_stock_high_date}.")
+print(f"Min: {msft_stock_low} on {msft_stock_low_date}.")
+print(f"Average: {msft_stock_average}.")
+
+print(f"Highest: ")
+print(f"Lowest: ")
+
+with open("stock_summary.txt", "a") as txt_file:
+    print(f"\nAAPL \n----", file=txt_file)
+    print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.", file=txt_file)
+    print(f"Min: {aapl_stock_low} on {aapl_stock_low_date}.", file=txt_file)
+    print(f"Average: {aapl_stock_average}.", file=txt_file)
+
+    print(f"\nIBM \n----", file=txt_file)
+    print(f"Max: {ibm_stock_high} on {ibm_stock_high_date}.", file=txt_file)
+    print(f"Min: {ibm_stock_low} on {ibm_stock_low_date}.", file=txt_file)
+    print(f"Average: {ibm_stock_average}.", file=txt_file)
+
+    print(f"\nMSFT \n----", file=txt_file)
+    print(f"Max: {msft_stock_high} on {msft_stock_high_date}.", file=txt_file)
+    print(f"Min: {msft_stock_low} on {msft_stock_low_date}.", file=txt_file)
+    print(f"Average: {msft_stock_average}.", file=txt_file)
+
+    print(f"\nHighest: ", file=txt_file)
+    print(f"Lowest: ", file=txt_file)
