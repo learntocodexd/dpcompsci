@@ -1,15 +1,26 @@
 '''
 this is so bad :(
-this doesnt find the date for when the high happens 
 doesn't write to a text file either
+first we mke big dict
+then we split the dicts with if statements below
+then we find average of each
+compare each to find highest and lowest
+when its highest find date
+when lowest find date
+finally compare all three max/min dicts
+get high/low of all price and the date
+write to console and text file(append) all these data points
+
 '''
 
+
 import csv
+
 
 #opens the csv file
 with open('stocks_data.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 1
+    
     stocks = {'Symbol': [], 'Date': [], 'Price': []}
     aapl_stocks = {'Symbol': [], 'Date': [], 'Price': []}
     ibm_stocks = {'Symbol': [], 'Date': [], 'Price': []}
@@ -23,19 +34,14 @@ with open('stocks_data.csv') as csv_file:
         if row[0] == "AAPL":
             aapl_stocks['Date'].append(row[1])
             aapl_stocks['Price'].append(float(row[2]))
-            line_count += 1
 
         elif row[0] == "IBM":
             ibm_stocks['Date'].append(row[1])
             ibm_stocks['Price'].append(float(row[2]))
-            line_count += 1
 
         elif row[0] == "MSFT":
             msft_stocks['Date'].append(row[1])
             msft_stocks['Price'].append(float(row[2]))
-            line_count += 1
-    
-    print(f'Processed {line_count} lines.')
 
 #finds the high by iterating through dict and comparing each value
 #also creates a count of how many of each script
@@ -82,6 +88,7 @@ for value in ibm_stocks["Price"]:
         else:
             ibm_stock_total += value
             ibm_stock_total_count += 1
+
 print(f"\nIBM \n---")
 print(f"Max: {ibm_stock_high}.")
 print(f"Min: {ibm_stock_low}.")
@@ -106,6 +113,7 @@ for value in msft_stocks["Price"]:
         else:
             msft_stock_total += value
             msft_stock_total_count += 1
+            
 print(f"\nMSFT \n---")
 print(f"Max: {msft_stock_high}.")#place date here
 print(f"Min: {msft_stock_low}.")#place date here
