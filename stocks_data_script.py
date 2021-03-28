@@ -4,7 +4,6 @@ this doesnt find the date for when the high happens
 doesn't write to a text file either
 '''
 
-
 import csv
 
 #opens the csv file
@@ -58,11 +57,12 @@ for value in aapl_stocks["Price"]:
             aapl_stock_total += value
             aapl_stock_total_count += 1
 
-#prints stock high, computes stock average and prints
-print(aapl_stock_high)
-print(aapl_stock_low)
+#prints stock high, computes stock average and prints\
+print(f"\nAAPL \n---")
+print(f"Max: {aapl_stock_high}.")
+print(f"Min: {aapl_stock_low}.")
 aapl_stock_average = aapl_stock_total / aapl_stock_total_count
-print(f"The average price of AAPL stock: {aapl_stock_average}.")
+print(f"Average: {aapl_stock_average}.")
 
 #repeats for ibm
 ibm_stock_high = 0
@@ -82,11 +82,11 @@ for value in ibm_stocks["Price"]:
         else:
             ibm_stock_total += value
             ibm_stock_total_count += 1
-
-print(ibm_stock_high)
-print(ibm_stock_low)
+print(f"\nIBM \n---")
+print(f"Max: {ibm_stock_high}.")
+print(f"Min: {ibm_stock_low}.")
 ibm_stock_average = ibm_stock_total / ibm_stock_total_count
-print(f"The average price of IBM stock: {ibm_stock_average}.")
+print(f"Average: {ibm_stock_average}.")
 
 #repeats for msft
 msft_stock_high = 0
@@ -106,11 +106,13 @@ for value in msft_stocks["Price"]:
         else:
             msft_stock_total += value
             msft_stock_total_count += 1
-
-print(msft_stock_high)
-print(msft_stock_low)
+print(f"\nMSFT \n---")
+print(f"Max: {msft_stock_high}.")#place date here
+print(f"Min: {msft_stock_low}.")#place date here
 msft_stock_average = msft_stock_total / msft_stock_total_count
-print(f"The average price of MSFT stock: {msft_stock_average}.")
+print(f"Average: {msft_stock_average}.")#place date here
+
+
 
 #redundant print of total price
 
