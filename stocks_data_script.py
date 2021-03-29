@@ -139,7 +139,8 @@ all_stock_high_list = (aapl_stock_high_dict, ibm_stock_high_dict, msft_stock_hig
 highest = 0
 for dic in all_stock_high_list:
     if float(dic["Price"]) > highest:
-        highest = dic
+        highest = float(dic["Price"])
+        highest_dic = dic
     else:
         pass
     
@@ -147,7 +148,8 @@ all_stock_low_list = (aapl_stock_low, ibm_stock_low, msft_stock_low)
 lowest = 1000
 for dic in all_stock_low_list:
     if float(dic["Price"]) < lowest:
-        lowest = dic
+        lowest = float(dic["Price"])
+        lowest_dic = dic
     else:
         pass
 
@@ -200,4 +202,3 @@ with open("stock_summary.txt", "a") as txt_file:
 
     print(f"\nHighest: ", file=txt_file)
     print(f"Lowest: ", file=txt_file)
-
