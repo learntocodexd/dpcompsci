@@ -1,8 +1,5 @@
 '''
-this is so bad :(
-doesn't write to a text file either
-first we mke big dict
-then we split the dicts with if statements below
+first we make big lists of dicts according to stock symbol
 then we find average of each
 compare each to find highest and lowest
 when its highest find date
@@ -138,6 +135,22 @@ msft_stock_average = msft_stock_total / msft_stock_total_count
 msft_stock_high_date = msft_stock_high_dict["Date"]
 msft_stock_low_date = msft_stock_low_dict["Date"]
 
+all_stock_high_list = (aapl_stock_high_dict, ibm_stock_high_dict, msft_stock_high_dict)
+highest = 0
+for dic in all_stock_high_list:
+    if float(dic["Price"]) > highest:
+        highest = dic
+    else:
+        pass
+    
+all_stock_low_list = (aapl_stock_low, ibm_stock_low, msft_stock_low)
+lowest = 1000
+for dic in all_stock_low_list:
+    if float(dic["Price"]) < lowest:
+        lowest = dic
+    else:
+        pass
+
 all_stock_max = (max(
     float(aapl_stock_high_dict['Price']), 
     float(ibm_stock_high_dict['Price']), 
@@ -150,6 +163,7 @@ all_stock_low = (min(
     float(msft_stock_low_dict['Price'])
 ))
 
+print(lowest)
 print(f"\nAAPL \n----")
 print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.")
 print(f"Min: {aapl_stock_low} on {aapl_stock_low_date}.")
@@ -165,7 +179,7 @@ print(f"Max: {msft_stock_high} on {msft_stock_high_date}.")
 print(f"Min: {msft_stock_low} on {msft_stock_low_date}.")
 print(f"Average: {msft_stock_average}.")
 
-print(f"Highest: ")
+print(f"\nHighest: ")
 print(f"Lowest: ")
 
 with open("stock_summary.txt", "a") as txt_file:
@@ -186,3 +200,4 @@ with open("stock_summary.txt", "a") as txt_file:
 
     print(f"\nHighest: ", file=txt_file)
     print(f"Lowest: ", file=txt_file)
+
