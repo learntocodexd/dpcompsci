@@ -2,10 +2,10 @@
 first we make big lists of dicts according to stock symbol
 then we find average of each
 compare each to find highest and lowest
-when its highest find date
-when lowest find date
+when its highest find the dict
+when lowest find the dict
 finally compare all three max/min dicts
-get high/low of all price and the date
+get high/low of all price and the according dict
 write to console and text file(append) all these data points
 '''
 
@@ -135,37 +135,29 @@ msft_stock_average = msft_stock_total / msft_stock_total_count
 msft_stock_high_date = msft_stock_high_dict["Date"]
 msft_stock_low_date = msft_stock_low_dict["Date"]
 
+#creates lists of the highest dicts
 all_stock_high_list = (aapl_stock_high_dict, ibm_stock_high_dict, msft_stock_high_dict)
+all_stock_low_list = (aapl_stock_low_dict, ibm_stock_low_dict, msft_stock_low_dict)
+
+#loops through high list to find highest dict
 highest = 0
 for dic in all_stock_high_list:
-    if float(dic["Price"]) > highest:
-        highest = float(dic["Price"])
-        highest_dic = dic
+    if float(dic['Price']) > highest:
+        highest = float(dic['Price'])
+        highest_dict = dic
     else:
         pass
-    
-all_stock_low_list = (aapl_stock_low, ibm_stock_low, msft_stock_low)
-lowest = 1000
+
+#loops through low list to find lowest dict
+lowest = 10000
 for dic in all_stock_low_list:
-    if float(dic["Price"]) < lowest:
-        lowest = float(dic["Price"])
-        lowest_dic = dic
+    if float(dic['Price']) < lowest:
+        lowest = float(dic['Price'])
+        lowest_dict = dic
     else:
         pass
 
-all_stock_max = (max(
-    float(aapl_stock_high_dict['Price']), 
-    float(ibm_stock_high_dict['Price']), 
-    float(msft_stock_high_dict['Price'])
-))
-
-all_stock_low = (min(
-    float(aapl_stock_low_dict['Price']), 
-    float(ibm_stock_low_dict['Price']), 
-    float(msft_stock_low_dict['Price'])
-))
-
-print(lowest)
+#print of all the data according to format requirement
 print(f"\nAAPL \n----")
 print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.")
 print(f"Min: {aapl_stock_low} on {aapl_stock_low_date}.")
@@ -181,9 +173,11 @@ print(f"Max: {msft_stock_high} on {msft_stock_high_date}.")
 print(f"Min: {msft_stock_low} on {msft_stock_low_date}.")
 print(f"Average: {msft_stock_average}.")
 
-print(f"\nHighest: ")
-print(f"Lowest: ")
 
+print(f"\nHighest: {highest_dict['Symbol']} {highest_dict['Price']} on {highest_dict['Date']}")
+print(f"Lowest: {lowest_dict['Symbol']} {lowest_dict['Price']} on {lowest_dict['Date']}")
+
+#appends text file with same output as the print
 with open("stock_summary.txt", "a") as txt_file:
     print(f"\nAAPL \n----", file=txt_file)
     print(f"Max: {aapl_stock_high} on {aapl_stock_high_date}.", file=txt_file)
@@ -200,5 +194,5 @@ with open("stock_summary.txt", "a") as txt_file:
     print(f"Min: {msft_stock_low} on {msft_stock_low_date}.", file=txt_file)
     print(f"Average: {msft_stock_average}.", file=txt_file)
 
-    print(f"\nHighest: ", file=txt_file)
-    print(f"Lowest: ", file=txt_file)
+    print(f"\nHighest: {highest_dict['Symbol']} {highest_dict['Price']} on {highest_dict['Date']}", file=txt_file)
+    print(f"Lowest: {lowest_dict['Symbol']} {lowest_dict['Price']} on {lowest_dict['Date']}", file=txt_file)
