@@ -1,0 +1,94 @@
+import math
+from random import choice
+import statistics
+import sys
+import turtle
+
+def main():
+    #make dictionary for plotting the turtle of all models
+    #make walk_lenth a list for multiple choice of walk lengths
+    walk_length = int(sys.argv[1])
+    trials = int(sys.argv[2])
+    model = sys.argv[3]
+    simulate(walk_length, trials, model)
+    
+def simulate(walk_length, trials, model):
+    coordinates = []
+    distance = []
+    direction_dict = {'Pa':[(0,1),(0,-1),(1,0),(-1,0)],
+                      'Mima':[(0,1),(0,-1),(1,0),(-1,0),(-1,0)],
+                      'Reg':[(1,0),(-1,0)]}
+    if model == 'Pa':
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Pa'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print(model)
+    elif model == 'Mima':
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Mima'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print(model)
+    elif model == 'Reg':
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Reg'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print(model)
+    elif model == 'All':
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Pa'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print('Pa')
+        coordinates = []
+        distance = []
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Mima'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print('Mima')
+        coordinates = []
+        distance = []
+        for walk in range(trials):
+            x = randomwalk(walk_length, direction_dict['Reg'])
+            coordinates.append(x)
+            dist = walk_distance(x)
+            distance.append(dist)
+        values(distance)
+        print('Reg')
+        #####else:
+            ########################
+def values(distance):
+    Mean = statistics.mean(distance)
+    CV = statistics.pstdev(distance)/Mean
+    Max = max(distance)
+    Min = min(distance)
+    print(f"Mean = {Mean}")
+    print(f"CV = {CV}")
+    print(f"Max = {Max}")
+    print(f"Min = {Min}")
+def randomwalk(steps,direction):
+    position = [0,0]
+    for walk in range(steps):
+        c_direction = choice(direction)
+        position[0]+= c_direction[0]
+        position[1]+= c_direction[1]
+    return position
+    
+def walk_distance(position):
+    x = math.sqrt((position[0]**2) + (position[1]**2))
+    return x
+    
+main()
