@@ -1,94 +1,206 @@
+'''
+Dustin Parker
+CS 1400 - 004
+12/3/2021
+Prof. Bianca Ruiz
+Project: Rolling Dice
+This project is meant to take three different people's walking habits and trace them in turtle.
+They have their separate habits based on coordinates given. Producing a Mean, CV, Max and Min.
+This then takes all the coordinates that has been produced, and plots them in a turtle window to
+show what each person's steps look like.
+'''
 import math
 from random import choice
 import statistics
 import sys
 import turtle
-
 def main():
-    #make dictionary for plotting the turtle of all models
-    #make walk_lenth a list for multiple choice of walk lengths
-    walk_length = int(sys.argv[1])
+    #this function beings all of the work and calls for the user's input
+    turtle_dict =  {}
+    split_sys = sys.argv[1].split(',')
+    split_sys[0] = int(split_sys[0])
+    split_sys[1] = int(split_sys[1])
     trials = int(sys.argv[2])
     model = sys.argv[3]
-    simulate(walk_length, trials, model)
-    
-def simulate(walk_length, trials, model):
+    simulate(split_sys, trials, model, turtle_dict)
+def get_direction(model):
+    #this function gives the directions possible for all three models and randomly chooses one
+    direction_dict = {'Pa':[(0,1),(1,0),(0,-1),(-1,0)],
+              'Mi-ma':[(0,1),(1,0),(0,-1),(0,-1),(-1,0)],
+              'Reg':[(1,0),(-1,0)]}
+    return choice(direction_dict[model])
+def simulate(split_sys, trials, model, turtle_dict):
+    #this is the main work done. it takes the coordinates from each model and appends them to a list of coordinates
+    #then they print out the ending results
     coordinates = []
     distance = []
-    direction_dict = {'Pa':[(0,1),(0,-1),(1,0),(-1,0)],
-                      'Mima':[(0,1),(0,-1),(1,0),(-1,0),(-1,0)],
-                      'Reg':[(1,0),(-1,0)]}
     if model == 'Pa':
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Pa'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print(model)
-    elif model == 'Mima':
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Mima'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print(model)
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Pa'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                get_direction('Pa')
+            print(f'{model} random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Pa'] = coordinates
+    elif model == 'Mi-ma':
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Mi-ma'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                get_direction('Mi-ma')
+            print(f'{model} random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Mi-ma'] = coordinates
     elif model == 'Reg':
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Reg'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print(model)
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Reg'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                direction_dict['Reg']
+            print(f'{model} random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Reg'] = coordinates
     elif model == 'All':
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Pa'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print('Pa')
+        pa_position = [0,0]
+        mima_position = [0,0]
+        reg_position = [0,0]
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Pa'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                get_direction('Pa')
+            print(f'Pa random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Pa'] = coordinates
         coordinates = []
         distance = []
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Mima'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print('Mima')
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Mi-ma'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                get_direction('Mi-ma')
+            print(f'Mi-ma random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Mi-ma'] = coordinates
         coordinates = []
         distance = []
-        for walk in range(trials):
-            x = randomwalk(walk_length, direction_dict['Reg'])
-            coordinates.append(x)
-            dist = walk_distance(x)
-            distance.append(dist)
-        values(distance)
-        print('Reg')
-        #####else:
-            ########################
+        for step_choice in split_sys:
+            coordinates = []
+            distance = []
+            for walk in range(trials):
+                position = [0,0]
+                for step in range(step_choice):
+                    x = randomwalk(step_choice, get_direction('Reg'),position)
+                coordinates.append(x)
+                dist = walk_distance(x)
+                distance.append(dist)
+                get_direction('Reg')
+            print(f'Reg random walk of {step_choice} steps')
+            values(distance)
+            turtle_dict['Reg'] = coordinates
+    else:
+        print(f"Incorrect input")
+        quit()
 def values(distance):
+    #this is the mathematic function. it takes all of the coordinates from the list and creates the values
     Mean = statistics.mean(distance)
-    CV = statistics.pstdev(distance)/Mean
+    CV = statistics.stdev(distance)/Mean
     Max = max(distance)
     Min = min(distance)
-    print(f"Mean = {Mean}")
-    print(f"CV = {CV}")
-    print(f"Max = {Max}")
-    print(f"Min = {Min}")
-def randomwalk(steps,direction):
-    position = [0,0]
-    for walk in range(steps):
-        c_direction = choice(direction)
-        position[0]+= c_direction[0]
-        position[1]+= c_direction[1]
+    print(f"Mean = {Mean:.1f} CV = {CV:.1f}")
+    print(f"Max = {Max:.1f} Min = {Min:.1f}")
+def randomwalk(walk_length,c_direction,position):
+    #this takes each position taken from any model, and adds it to the previous coordinate which results
+    #in the final position for the model
+    position[0]+= c_direction[0]
+    position[1]+= c_direction[1]
     return position
-    
+
 def walk_distance(position):
+    #this is the function that calculates the distance from the final location to the origin point
     x = math.sqrt((position[0]**2) + (position[1]**2))
     return x
+def plot():
+    #this plots all of the coordinates for each model and places them in a turtle window.
+    t = turtle.Turtle()
+    t.penup()
+    t.speed(0)
+    model = "Pa"
+    t.color("black")
+    t.shape("circle")
+    for trial in range(50):
+        position = [0,0]
+        for step in range(100):
+            position = randomwalk(100,get_direction('Pa'),position)
+        position[0],position[1] = position[0]*5,position[1]*5
+        t.goto(position)
+        t.stamp()
+    model = "Mi-ma"
+    t.color("green")
+    t.shape("square")
+    for trial in range(50):
+        position = [0,0]
+        for step in range(100):
+            position = randomwalk(100,get_direction('Mi-ma'),position)
+        position[0],position[1] = position[0]*5,position[1]*5
+        t.goto(position)
+        t.stamp()
+    model = ("Reg")
+    t.color("red")
+    t.shape("arrow")
+    for trial in range(50):
+        position = [0,0]
+        for step in range(100):
+            position = randomwalk(100,get_direction('Reg'),position)
+        position[0],position[1] = position[0]*5,position[1]*5
+        t.goto(position)
+        t.stamp()
     
 main()
+
+def save_to_image(dest='random_walk.png'):
+    '''Saves the turtle canvas to dest. Do not modify this function.'''
+    with tempfile.NamedTemporaryFile(prefix='random_walk',
+                                     suffix='.eps') as tmp:
+        turtle.getcanvas().postscript(file=tmp.name)
+        subprocess.run(['gs',
+                        '-dSAFER',
+                        '-o',
+                        dest,
+                        '-r200',
+                        '-dEPSCrop',
+                        '-sDEVICE=png16m',
+                        tmp.name],
+                       stdout=subprocess.DEVNULL)
+
